@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutiger Aero World</title>
+    <style>
+        /* --- FRUTIGER AERO CORE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Background gradasi khas: Langit biru cerah, rumput hijau, dan efek aurora */
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 40%, #a8ff78 80%, #78ffd6 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #1a3a4b;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Efek Gelembung Air Abstrak */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: inset -10px -10px 25px rgba(0,0,0,0.1), 
+                        inset 15px 15px 25px rgba(255,255,255,0.9), 
+                        0 20px 30px rgba(0,0,0,0.1);
+            z-index: -1;
+        }
+        body::before { width: 150px; height: 150px; top: 15%; left: 10%; }
+        body::after { width: 250px; height: 250px; bottom: 10%; right: 8%; opacity: 0.7; }
+
+        /* --- HEADER & NAVIGATION (Aero Glass Effect) --- */
+        header {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 180, 219, 0.2);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #005c8a;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Ikon bulat mengkilap (Glossy Sphere) */
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at 35% 35%, #78ffd6, #0083b0);
+            border-radius: 50%;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3), inset 5px 5px 8px rgba(255,255,255,0.8);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #004b72;
+            font-weight: 600;
+            margin-left: 25px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 10px rgba(255,255,255,0.8), inset 0 0 5px rgba(255,255,255,0.5);
+            color: #0083b0;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            color: #004b72;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.6);
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #1a4a5e;
+        }
+
+        /* Tombol Glossy khas Windows Vista */
+        .btn-glossy {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(to bottom, #56ab2f 0%, #a8ff78 50%, #56ab2f 51%, #3d7a21 100%);
+            border: 1px solid #3d7a21;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.5);
+            text-shadow: 0 -1px 1px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .btn-glossy:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 6px 20px rgba(86, 171, 47, 0.4), inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+
+        .btn-glossy:active {
+            transform: scale(0.98);
+        }
+
+        /* --- MAIN CARDS SECTION --- */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto 80px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 131, 176, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+            box-shadow: 0 12px 40px rgba(0, 131, 176, 0.25);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 35% 35%, #ffffff, #00b4db);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: inset -2px -2px 6px rgba(0,0,0,0.2), 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #005c8a;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .card p {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #2c5266;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            text-align: center;
+            padding: 25px;
+            color: #004b72;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigasi Transparan -->
+    <header>
+    <div class="logo">
+        <div class="logo-icon"></div>
+        frutiger Aero
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#">Gallery</a>
+        <a href="penjelasan.html">About</a>
+		<a href=jelajahisekarang.html" class="btn-glossy">
+    Jelajahi Sekarang →
+</a>
+    </nav>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Frutiger Aero: the promised future</h1>
+            <p>Selamat datang kembali di era keemasan estetika digital. Nikmati perpaduan harmoni antara teknologi modern, elemen alam yang menyegarkan, kejernihan air, dan optimisme masa depan.</p>
+            <a href="#" class="btn-glossy">Jelajahi Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Konten Utama (Cards) -->
+    <main class="main-content">
+        <div class="card">
+            <div class="card-icon" style="background: radial-gradient(circle at 35% 35%, #ffffff, #00b4db);"></div>
+            <h3>Eco-Technology</h3>
+            <p>Integrasi teknologi bersih dengan elemen alam, menghadirkan visual segar daun hijau dan air jernih yang menenangkan.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon" style="background: radial-gradient(circle at 35% 35%, #ffffff, #a8ff78);"></div>
+            <h3>Glassmorphism</h3>
+            <p>Tampilan antarmuka transparan mirip kaca yang berkilau, terinspirasi penuh dari Windows Aero dan Mac OS X Aqua.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon" style="background: radial-gradient(circle at 35% 35%, #ffffff, #ff7878);"></div>
+            <h3>Glossy UI</h3>
+            <p>Sentuhan tekstur mengkilap dan gelembung air makro yang memberikan kedalaman ruang 3D yang ikonik dan dinamis.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 AeroSphere Project. Terinspirasi oleh Estetika Frutiger Aero (2004 - 2013).</p>
+    </footer>
+
+</body>
+</html>
